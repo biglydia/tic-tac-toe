@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    height: 600px;
+    width: 600px;
+}
+
+.cell {
+    height: auto;
+    width: auto;
+    border: black solid 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: 0;
+}
+
+.cell:nth-child(3n+1) {
+    border-left: 0;
+}
+
+.cell:nth-child(3n+3) {
+    border-right: 0;
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+    border-bottom: 0;
+}
+
+.cell.x::before {
+    content: 'X';
+}
+
+.cell.o::before {
+    content: 'O';
+}
+
+
