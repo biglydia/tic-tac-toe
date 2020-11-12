@@ -15,8 +15,8 @@ body {
 }
 
 .cell {
-    height: auto;
-    width: auto;
+    height: 200px;
+    width: 200px;
     border: black solid 3px;
     display: flex;
     justify-content: center;
@@ -45,10 +45,24 @@ body {
 
 .cell.x::before {
     content: 'X';
+    font-size: 100px;
 }
 
 .cell.o::before {
     content: 'O';
+    font-size: 100px;
+}
+
+.cell.xhover:hover::before {
+    content: 'X';
+    opacity: 0.5;
+    font-size: 100px;
+}
+
+.cell.ohover:hover::before {
+    content: 'O';
+    opacity: 0.5;
+    font-size: 100px;
 }
 
 
