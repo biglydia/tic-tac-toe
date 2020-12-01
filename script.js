@@ -1,36 +1,31 @@
-const cells = document.querySelectorAll('#cell')
+const cellArray = Array.from(document.querySelectorAll('#cell'))
+const gameOverModal = document.getElementById('game_over_modal')
+let winnerText = document.getElementById('winner_text')
+let restartButton = document.getElementById('new_game_button')
 let currentPlayer = 'x'
+const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
 
 startGame()
 
 function startGame() {
-    Array.from(cells).forEach(cell => {
+    cellArray.forEach(cell => {
         cell.addEventListener('click', handleClick, { once: true})
         cell.addEventListener('mouseover', handleMouseover)
     })
 }
 
-function handleClick(e) {
-    const cell = e.target;
-    drawMark(cell);
-}
-
 function handleMouseover(e) {
     const cell = e.target;
     shadowMark(cell);
-}
-
-function drawMark(cell) {
-    if (currentPlayer === 'x') {
-        cell.classList.remove('xhover')
-        cell.classList.add('x')
-        currentPlayer = 'o'
-    } else {
-        cell.classList.remove('ohover')
-        cell.classList.add('o')
-        currentPlayer = 'x'
-    }
-    checkWin()
 }
 
 function shadowMark(cell) {
@@ -43,8 +38,66 @@ function shadowMark(cell) {
     }
 }
 
-function checkWin() {
+function switchPlayer() {
+    if (currentPlayer === 'x') {
+        currentPlayer = 'o'
+    } else {
+        currentPlayer = 'x'
+    }
 }
+
+function handleClick(e) {
+    const cell = e.target;
+    drawMark(cell, gameOverModal);
+}
+
+function drawMark(cell, gameOverModal) {
+    if (currentPlayer === 'x') {
+        cell.classList.remove('xhover')
+        cell.classList.add('x')
+    } else {
+        cell.classList.remove('ohover')
+        cell.classList.add('o')
+    }
+    if (checkWin()) {
+        console.log(currentPlayer + ' wins!')
+        gameOverModal.style.display = 'flex'
+        currentPlayer = currentPlayer.toUpperCase()
+        winnerText.innerText = `Player ${currentPlayer} wins!`
+    }
+    switchPlayer()
+}
+
+function checkWin() {
+    return winningCombos.some(combo => {
+        return combo.every(index => {
+            console.log(cellArray[index].classList.contains(currentPlayer))
+            return cellArray[index].classList.contains(currentPlayer)
+        })
+    })
+}
+
+restartButton.onclick = function() {
+    cellArray.forEach(cell => {
+        cell.classList.remove('x')
+        cell.classList.remove('o')
+        gameOverModal.style.display = 'none';
+    })
+    startGame()
+}
+
+// function checkWin() {
+//     var playerCombo = []
+//     cellArray.forEach(cell => {
+//         if (cell.classList.contains(currentPlayer)) {
+//             playerCombo.push(cellArray.indexOf(cell))
+//         }
+//     })
+
+
+
+
+
 
 
 
