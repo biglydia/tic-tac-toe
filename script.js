@@ -64,13 +64,12 @@ function drawMark(cell, gameOverModal) {
         cell.classList.add('o')
     }
     if (checkWin()) {
-        console.log(currentPlayer + ' wins!')
         gameOverModal.style.display = 'flex'
         currentPlayer = currentPlayer.toUpperCase()
         winnerText.innerText = `Player ${currentPlayer} wins!`
     } else if (isDraw()) {
-            gameOverModal.style.display = 'flex'
-            winnerText.innerText = `A draw! Nobody wins!`
+        gameOverModal.style.display = 'flex'
+        winnerText.innerText = `A draw! Nobody wins!`
     }
     switchPlayer()
 }
@@ -97,24 +96,3 @@ restartButton.onclick = function() {
     })
     startGame()
 }
-
-
-
-// function checkWin() {
-//     var playerCombo = []
-//     cellArray.forEach(cell => {
-//         if (cell.classList.contains(currentPlayer)) {
-//             playerCombo.push(cellArray.indexOf(cell))
-//         }
-//     })
-
-
-
-
-
-
-
-
-
-
-
