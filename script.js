@@ -1,9 +1,9 @@
 const cellArray = Array.from(document.querySelectorAll('#cell'))
 const gameOverModal = document.getElementById('game_over_modal')
-let winnerText = document.getElementById('winner_text')
-let restartButton = document.getElementById('new_game_button')
+const winnerText = document.getElementById('winner_text')
+const restartButton = document.getElementById('new_game_button')
 let currentPlayer = 'x'
-let currentPlayerText = document.getElementById('current_player_header')
+const currentPlayerText = document.getElementById('current_player_header')
 
 const winningCombos = [
     [0, 1, 2],
