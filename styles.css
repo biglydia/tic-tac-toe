@@ -1,68 +1,108 @@
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url("fonts/BebasNeue-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'FredokaOne';
+    src: url("fonts/FredokaOne-Regular.ttf");
+}
+
+.header_container {
+    /* height: 20%; */
+    font-family: 'Bebas Neue';
+    font-size: 1.2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+h1, #current_player_header {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
 body {
     margin: 0;
     height: 100vh;
     width: 100vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: flex-start;
+}
+
+.board_container {
+    height: 41vw;
+    width: 41vw;
+    /* display: flex;
+    align-content: center; */
+    align-self: center;
 }
 
 .board {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    height: 600px;
-    width: 600px;
+    /* height: 41vw;
+    width: 41vw; */
+    column-gap: 3px;
+    row-gap: 3px;
+    background-color: black;
+    position: absolute;
+    font-family: 'FredokaOne';
+    align-self: right;
 }
 
 .cell {
-    height: 200px;
-    width: 200px;
-    border: black solid 3px;
+    height: calc(39vw / 3);
+    width: calc(39vw / 3);
+    /* border: black solid 3px; */
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .cell:first-child,
 .cell:nth-child(2),
 .cell:nth-child(3) {
-    border-top: 0;
+    /* border-top: transparent; */
 }
 
 .cell:nth-child(3n+1) {
-    border-left: 0;
+    /* border-left: 0; */
 }
 
 .cell:nth-child(3n+3) {
-    border-right: 0;
+    /* border-right: 0; */
 }
 
 .cell:last-child,
 .cell:nth-child(8),
 .cell:nth-child(7) {
-    border-bottom: 0;
+    /* border-bottom: 0; */
 }
 
 .cell.x::before {
     content: 'X';
-    font-size: 100px;
+    font-size: calc(25vw/3);
+    font-weight: lighter;
 }
 
 .cell.o::before {
     content: 'O';
-    font-size: 100px;
+    font-size: calc(25vw/3);
 }
 
 .cell.xhover:hover::before {
     content: 'X';
     opacity: 0.5;
-    font-size: 100px;
+    font-size: calc(25vw/3);
 }
 
 .cell.ohover:hover::before {
     content: 'O';
     opacity: 0.5;
-    font-size: 100px;
+    font-size: calc(25vw/3);
 }
 
 .game_over_modal {
@@ -75,23 +115,25 @@ body {
     z-index: 1;
     background-color: rgba(0,0,0,0.8);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
 }
 
 .winner_text {
-    font-size: 100px;
+    font-size: 10vw;
     color: red;
-    padding: 0;
+    padding-top: 20vh;
     margin: 0;
+    font-family: 'Bebas Neue';
 }
 
 .new_game_button {
-    font-size: 40px;
+    font-size: 5vw;
     border-style: solid;
     border-color: black;
     border-radius: 10px;
     cursor: pointer;
+    font-family: 'Bebas Neue';
 }
 
 

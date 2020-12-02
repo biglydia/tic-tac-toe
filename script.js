@@ -3,6 +3,8 @@ const gameOverModal = document.getElementById('game_over_modal')
 let winnerText = document.getElementById('winner_text')
 let restartButton = document.getElementById('new_game_button')
 let currentPlayer = 'x'
+let currentPlayerText = document.getElementById('current_player_header')
+
 const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -17,6 +19,7 @@ const winningCombos = [
 startGame()
 
 function startGame() {
+    currentPlayerText.innerText = `Player ${currentPlayer}\'s turn`
     cellArray.forEach(cell => {
         cell.addEventListener('click', handleClick, { once: true})
         cell.addEventListener('mouseover', handleMouseover)
@@ -49,6 +52,7 @@ function switchPlayer() {
 function handleClick(e) {
     const cell = e.target;
     drawMark(cell, gameOverModal);
+    currentPlayerText.innerText = `Player ${currentPlayer}\'s turn`
 }
 
 function drawMark(cell, gameOverModal) {
@@ -64,6 +68,9 @@ function drawMark(cell, gameOverModal) {
         gameOverModal.style.display = 'flex'
         currentPlayer = currentPlayer.toUpperCase()
         winnerText.innerText = `Player ${currentPlayer} wins!`
+    } else if (isDraw()) {
+            gameOverModal.style.display = 'flex'
+            winnerText.innerText = `A draw! Nobody wins!`
     }
     switchPlayer()
 }
@@ -71,9 +78,14 @@ function drawMark(cell, gameOverModal) {
 function checkWin() {
     return winningCombos.some(combo => {
         return combo.every(index => {
-            console.log(cellArray[index].classList.contains(currentPlayer))
             return cellArray[index].classList.contains(currentPlayer)
         })
+    })
+}
+
+function isDraw() {
+    return cellArray.every(cell => {
+        return cell.classList.contains('x') || cell.classList.contains('o')
     })
 }
 
@@ -85,6 +97,8 @@ restartButton.onclick = function() {
     })
     startGame()
 }
+
+
 
 // function checkWin() {
 //     var playerCombo = []
